@@ -34,7 +34,7 @@
     .btn-light{border-color:rgba(255,255,255,.28);color:#fff;background:rgba(255,255,255,.07)}
     .hero-art{min-height:450px;border-radius:36px;position:relative;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;box-shadow:var(--shadow);overflow:hidden}
     .sun{position:absolute;width:170px;height:170px;border-radius:50%;background:rgba(214,166,46,.9);top:55px;right:65px;filter:blur(.2px)}
-    .palm{font-size:0;width:190px;max-width:190px;height:240px;border-radius:24px;overflow:hidden;transform:rotate(-3deg);filter:drop-shadow(0 20px 18px rgba(0,0,0,.22));z-index:2;background:url("https://www.proforest.net/fileadmin/_processed_/9/f/csm_21050268638_d99e841043_k_212df47fb1.jpg") center/cover no-repeat;border:3px solid rgba(255,255,255,.18)}
+    .palm{font-size:0;width:330px;max-width:330px;height:330px;border-radius:24px;overflow:hidden;transform:rotate(-3deg);filter:drop-shadow(0 20px 18px rgba(0,0,0,.22));z-index:2;background:url("https://www.proforest.net/fileadmin/_processed_/9/f/csm_21050268638_d99e841043_k_212df47fb1.jpg") center/cover no-repeat;border:3px solid rgba(255,255,255,.18)}
     .art-label{position:absolute;left:28px;bottom:25px;background:rgba(9,35,25,.72);border:1px solid rgba(255,255,255,.15);padding:15px 18px;border-radius:17px;backdrop-filter:blur(10px)}
     section{padding:90px 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:42px}
