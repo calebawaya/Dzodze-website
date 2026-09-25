@@ -35,7 +35,7 @@
     .hero-art{min-height:450px;border-radius:36px;position:relative;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;box-shadow:var(--shadow);overflow:hidden}
     .sun{position:absolute;width:170px;height:170px;border-radius:50%;background:rgba(214,166,46,.9);top:55px;right:65px;filter:blur(.2px)}
     .palm{width:360px;max-width:100%;height:500px;border-radius:20px;overflow:hidden;transform:none;filter:drop-shadow(0 20px 18px rgba(0,0,0,.22));z-index:2;border:3px solid rgba(255,255,255,.18);justify-self:center;align-self:center;display:flex;align-items:center;justify-content:center;background:transparent}
-    .palm img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;image-rendering:auto}.art-label{position:absolute;left:28px;bottom:25px;z-index:3;background:rgba(9,35,25,.72);border:1px solid rgba(255,255,255,.15);padding:15px 18px;border-radius:17px;backdrop-filter:blur(10px)}
+    .palm img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;image-rendering:auto;filter:url("#palm-sharpen") contrast(1.04) saturate(1.04)}.art-label{position:absolute;left:28px;bottom:25px;z-index:3;background:rgba(9,35,25,.72);border:1px solid rgba(255,255,255,.15);padding:15px 18px;border-radius:17px;backdrop-filter:blur(10px)}
     section{padding:90px 0}
     .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:42px}
     .section-head>div{max-width:730px}
