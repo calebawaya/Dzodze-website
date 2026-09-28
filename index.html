@@ -93,7 +93,11 @@
 
     <section id="events">
       <div class="container">
-        <div class="section-head"><div><div class="kicker">Events</div><h2>A festival programme built around culture, talent and enterprise.</h2><p class="lead">The annual programme can expand with official dates and venues as they are confirmed.</p></div></div>
+        <div class="section-head"><div><div class="kicker">Events</div><h2>A festival programme built around culture, talent and enterprise.</h2><p class="lead">Programme categories are ready. Official dates, times and venues should be added only after confirmation by the festival organisers.</p></div></div>
+        <div class="programme-status">
+          <div><span class="status-dot"></span><strong>Programme status</strong><span>Dates & venues: To be confirmed by organisers</span></div>
+          <a class="btn btn-light-green" href="#partner">Become a programme partner →</a>
+        </div>
         <div class="events">
           <article class="event"><div class="event-date">DEZA<br>MAIN</div><div><h3>Grand Durbar</h3><p>Chiefs, queen mothers, elders, citizens and invited guests gather for the festival's central cultural celebration.</p></div></article>
           <article class="event"><div class="event-date">CULTURE</div><div><h3>Cultural Night</h3><p>Music, dance, storytelling, regalia and cultural displays celebrating the heritage of Dzodze.</p></div></article>
@@ -140,9 +144,34 @@
 
     <section id="media">
       <div class="container">
-        <div class="section-head"><div><div class="kicker">Media & Archives</div><h2>Build a living archive of Deza.</h2><p class="lead">Use this space for official news, livestreams, photographs, videos, press material and festival archives.</p></div></div>
-        <div class="gallery">
-          <div class="gallery-card"><span>🌴 Palm Heritage & Agriculture</span></div><div class="gallery-card"><span>🪘 Culture & Durbar</span></div><div class="gallery-card"><span>🎨 Creative Arts</span></div><div class="gallery-card"><span>🏡 Homecoming</span></div><div class="gallery-card"><span>🤝 Enterprise & Investment</span></div>
+        <div class="section-head"><div><div class="kicker">Media & Archives</div><h2>A living archive of Deza.</h2><p class="lead">Official photographs, videos, news and festival records can be added here as the archive grows.</p></div></div>
+        <div class="media-tools" role="group" aria-label="Filter media archive">
+          <button class="media-filter active" data-filter="all">All</button>
+          <button class="media-filter" data-filter="photo">Photos</button>
+          <button class="media-filter" data-filter="video">Videos</button>
+          <button class="media-filter" data-filter="news">News</button>
+        </div>
+        <div class="gallery media-gallery">
+          <article class="gallery-card media-item media-photo">
+            <img src="images/dzodze-oil-palm.jpg" alt="Oil palm tree in a Ghanaian palm plantation">
+            <div class="media-caption"><small>PHOTO</small><strong>Palm Heritage & Agriculture</strong><span>Dzodze's palm story and agricultural heritage.</span></div>
+          </article>
+          <article class="gallery-card media-item media-video">
+            <div class="media-placeholder">▶</div>
+            <div class="media-caption"><small>VIDEO</small><strong>Deza Festival Highlights</strong><span>Official festival video — coming soon.</span></div>
+          </article>
+          <article class="gallery-card media-item media-photo">
+            <div class="media-placeholder">🪘</div>
+            <div class="media-caption"><small>PHOTO</small><strong>Culture & Durbar</strong><span>Official photographs can be added here.</span></div>
+          </article>
+          <article class="gallery-card media-item media-news">
+            <div class="media-placeholder">📰</div>
+            <div class="media-caption"><small>NEWS</small><strong>Deza Updates</strong><span>Official festival announcements can be added here.</span></div>
+          </article>
+          <article class="gallery-card media-item media-photo">
+            <div class="media-placeholder">🤝</div>
+            <div class="media-caption"><small>PHOTO</small><strong>Enterprise & Investment</strong><span>Community and business stories.</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -170,6 +199,19 @@
     const menuBtn=document.getElementById('menuBtn'), mobileMenu=document.getElementById('mobileMenu');
     menuBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('open');menuBtn.textContent=mobileMenu.classList.contains('open')?'✕':'☰'});
     document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuBtn.textContent='☰'}));
+
+    const mediaFilters=document.querySelectorAll('.media-filter');
+    const mediaItems=document.querySelectorAll('.media-item');
+    mediaFilters.forEach(button=>{
+      button.addEventListener('click',()=>{
+        const filter=button.dataset.filter;
+        mediaFilters.forEach(item=>item.classList.remove('active'));
+        button.classList.add('active');
+        mediaItems.forEach(item=>{
+          item.style.display=filter==='all'||item.classList.contains('media-'+filter)?'flex':'none';
+        });
+      });
+    });
   </script>
 </body>
 </html>
