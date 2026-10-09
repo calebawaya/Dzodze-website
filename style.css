@@ -168,3 +168,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .share-message{grid-column:1/-1;color:#d9e8dd;font-size:.88rem;min-height:1.3em}
 @media(max-width:900px){.updates-grid,.contact-grid{grid-template-columns:1fr 1fr}.share-inner{grid-template-columns:1fr}.share-actions{justify-content:flex-start}}
 @media(max-width:620px){.updates-grid,.contact-grid{grid-template-columns:1fr}.update-card p{min-height:0}.share-actions{display:grid;grid-template-columns:1fr}.share-btn{width:100%}}
+
+/* Clickable Deza photo archive: display clean images without overlay captions. */
+.media-gallery .media-image-link{position:absolute;inset:0;display:block;z-index:2;cursor:zoom-in;border-radius:inherit;}
+.media-gallery .media-image-link img{display:block;}
+.media-gallery .gallery-card:after{pointer-events:none;}
+.media-gallery .media-image-link:focus-visible{outline:4px solid var(--gold);outline-offset:-5px;}
