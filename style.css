@@ -174,3 +174,28 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .media-gallery .media-image-link img{display:block;}
 .media-gallery .gallery-card:after{pointer-events:none;}
 .media-gallery .media-image-link:focus-visible{outline:4px solid var(--gold);outline-offset:-5px;}
+
+
+/* Full-screen photo viewer with next/previous navigation. */
+body.photo-viewer-open{overflow:hidden}
+.photo-lightbox[hidden]{display:none!important}
+.photo-lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,16,11,.94);display:flex;align-items:center;justify-content:center;padding:70px 84px 58px;color:#fff}
+.lightbox-figure{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;margin:0}
+.lightbox-figure img{max-width:100%;max-height:calc(100vh - 150px);width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 20px 70px rgba(0,0,0,.4)}
+.lightbox-figure figcaption{color:#eaf4ed;text-align:center;font-size:.9rem}
+.lightbox-close,.lightbox-nav{position:absolute;z-index:2;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px);transition:background .2s,transform .2s}
+.lightbox-close:hover,.lightbox-nav:hover{background:rgba(255,255,255,.25);transform:scale(1.04)}
+.lightbox-close{top:20px;right:24px;width:48px;height:48px;border-radius:50%;font-size:2rem;line-height:1}
+.lightbox-nav{top:50%;transform:translateY(-50%);width:54px;height:70px;border-radius:16px;font-size:3rem;line-height:1}
+.lightbox-nav:hover{transform:translateY(-50%) scale(1.04)}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+.lightbox-count{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#d8e8dd;font-weight:800;font-size:.9rem}
+@media(max-width:620px){
+  .photo-lightbox{padding:72px 12px 58px}
+  .lightbox-figure img{max-height:calc(100vh - 170px);max-width:100%}
+  .lightbox-nav{width:42px;height:54px;border-radius:12px;font-size:2.4rem;background:rgba(0,0,0,.45)}
+  .lightbox-prev{left:8px}
+  .lightbox-next{right:8px}
+  .lightbox-close{top:12px;right:12px;width:42px;height:42px}
+}
