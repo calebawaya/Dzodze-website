@@ -259,6 +259,17 @@
     </div>
   </footer>
 
+  <div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Photo gallery" hidden>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close photo viewer">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">›</button>
+    <div class="lightbox-count" id="lightboxCount" aria-live="polite"></div>
+  </div>
+
   <script>
     const menuBtn=document.getElementById('menuBtn'), mobileMenu=document.getElementById('mobileMenu');
     menuBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('open');menuBtn.textContent=mobileMenu.classList.contains('open')?'✕':'☰'});
@@ -277,6 +288,57 @@
     copyLinkBtn?.addEventListener('click',async()=>{
       try{await navigator.clipboard.writeText(pageUrl);shareMessage.textContent='Website link copied.';}
       catch(error){shareMessage.textContent='Copy is unavailable in this browser.';}
+    });
+
+    // Click a photo to open the viewer and move through the full archive.
+    const photoLinks = Array.from(document.querySelectorAll('.media-gallery .media-image-link'));
+    const photoLightbox = document.getElementById('photoLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCount = document.getElementById('lightboxCount');
+    let currentPhotoIndex = 0;
+    let lastPhotoTrigger = null;
+
+    function showPhoto(index) {
+      if (!photoLinks.length) return;
+      currentPhotoIndex = (index + photoLinks.length) % photoLinks.length;
+      const link = photoLinks[currentPhotoIndex];
+      const image = link.querySelector('img');
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt || 'Dzodze Deza gallery photo';
+      lightboxCaption.textContent = image.alt || '';
+      lightboxCount.textContent = (currentPhotoIndex + 1) + ' / ' + photoLinks.length;
+    }
+    function openPhotoViewer(index, trigger) {
+      lastPhotoTrigger = trigger || document.activeElement;
+      showPhoto(index);
+      photoLightbox.hidden = false;
+      document.body.classList.add('photo-viewer-open');
+      document.getElementById('lightboxClose').focus();
+    }
+    function closePhotoViewer() {
+      photoLightbox.hidden = true;
+      document.body.classList.remove('photo-viewer-open');
+      if (lastPhotoTrigger) lastPhotoTrigger.focus();
+    }
+    photoLinks.forEach((link, index) => {
+      link.removeAttribute('target');
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        openPhotoViewer(index, link);
+      });
+    });
+    document.getElementById('lightboxPrev').addEventListener('click', () => showPhoto(currentPhotoIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => showPhoto(currentPhotoIndex + 1));
+    document.getElementById('lightboxClose').addEventListener('click', closePhotoViewer);
+    photoLightbox.addEventListener('click', event => {
+      if (event.target === photoLightbox) closePhotoViewer();
+    });
+    document.addEventListener('keydown', event => {
+      if (photoLightbox.hidden) return;
+      if (event.key === 'Escape') closePhotoViewer();
+      if (event.key === 'ArrowLeft') showPhoto(currentPhotoIndex - 1);
+      if (event.key === 'ArrowRight') showPhoto(currentPhotoIndex + 1);
     });
 
     const mediaFilters=document.querySelectorAll('.media-filter');
